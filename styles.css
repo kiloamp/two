@@ -1,0 +1,161 @@
+:root {
+  color-scheme: light;
+  --ink: #103449;
+  --sea: #9ee8e0;
+  --mint: #c8f7d4;
+  --coral: #ff9d8c;
+  --sun: #ffd166;
+  --sky: #eaf9ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 18%, rgba(255, 209, 102, 0.55), transparent 24rem),
+    radial-gradient(circle at 82% 22%, rgba(255, 157, 140, 0.48), transparent 22rem),
+    linear-gradient(160deg, var(--sky), #f9fffb 46%, #dff8ff);
+}
+
+.scene {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  isolation: isolate;
+}
+
+.center-one {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: clamp(5rem, 20vw, 18rem);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  text-shadow:
+    0 0.04em 0 rgba(255, 255, 255, 0.9),
+    0 0.18em 1.2em rgba(16, 52, 73, 0.14);
+  animation: breathe 5.5s ease-in-out infinite;
+}
+
+.bubble-field {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bubble-field span {
+  position: absolute;
+  left: var(--x);
+  bottom: -7rem;
+  display: grid;
+  width: var(--size);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  color: rgba(16, 52, 73, 0.72);
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.96), transparent 0.55rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.44), rgba(158, 232, 224, 0.2));
+  box-shadow:
+    inset 0 0 1.8rem rgba(255, 255, 255, 0.62),
+    0 1.4rem 3.5rem rgba(16, 52, 73, 0.1);
+  font-size: clamp(0.8rem, calc(var(--size) * 0.25), 1.25rem);
+  font-weight: 800;
+  line-height: 1;
+  animation:
+    float-up var(--duration) linear infinite,
+    sway 4.8s ease-in-out infinite;
+  animation-delay: var(--delay), calc(var(--delay) * 0.4);
+}
+
+.ambient {
+  position: absolute;
+  width: min(34vw, 22rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.35;
+}
+
+.ambient-a {
+  top: 10%;
+  left: 10%;
+  background: var(--mint);
+}
+
+.ambient-b {
+  right: 8%;
+  bottom: 12%;
+  background: var(--coral);
+}
+
+.ambient-c {
+  top: 42%;
+  right: 24%;
+  width: min(21vw, 14rem);
+  background: var(--sun);
+}
+
+@keyframes float-up {
+  from {
+    transform: translate3d(-50%, 0, 0) scale(0.86);
+    opacity: 0;
+  }
+
+  12%,
+  88% {
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(-50%, -112vh, 0) scale(1.08);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    margin-left: -1.3rem;
+  }
+
+  50% {
+    margin-left: 1.3rem;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-0.04em) scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .center-one,
+  .bubble-field span {
+    animation: none;
+  }
+}
