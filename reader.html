@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A320 FCOM Markdown Reader</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="tool-page reader-page">
+    <header class="tool-header">
+      <a href="index.html">A320 FCOM</a>
+      <nav aria-label="Views">
+        <a href="fcom-standard.md">Source MD</a>
+        <a href="markmap.html">Markmap</a>
+        <a href="presentation.html">Marp</a>
+        <a href="flashcards.html">Flashcards</a>
+      </nav>
+    </header>
+    <main class="reader-layout">
+      <aside class="toc" aria-label="Markdown navigation">
+        <h2>Sections</h2>
+        <div id="toc"></div>
+      </aside>
+      <article class="markdown-body" id="reader">Loading...</article>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/marked@13.0.3/marked.min.js"></script>
+    <script>
+      const slugify = (value) =>
+        value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+      fetch("fcom-standard.md")
+        .then((response) => response.text())
+        .then((markdown) => {
+          const reader = document.getElementById("reader");
+          reader.innerHTML = marked.parse(markdown);
+
+          const headings = [...reader.querySelectorAll("h1, h2, h3")];
+          const toc = document.getElementById("toc");
+          toc.innerHTML = headings
+            .map((heading) => {
+              const id = slugify(heading.textContent);
+              heading.id = id;
+              return `<a class="${heading.tagName.toLowerCase()}" href="#${id}">${heading.textContent}</a>`;
+            })
+            .join("");
+        });
+    </script>
+  </body>
+</html>

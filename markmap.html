@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A320 FCOM Markmap</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      markmap-toolbar {
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+      }
+    </style>
+  </head>
+  <body class="tool-page">
+    <header class="tool-header">
+      <a href="index.html">A320 FCOM</a>
+      <nav aria-label="Views">
+        <a href="fcom-outline.md">Source MD</a>
+        <a href="reader.html">Reader</a>
+        <a href="presentation.html">Marp</a>
+        <a href="flashcards.html">Flashcards</a>
+      </nav>
+    </header>
+    <main class="markmap-shell">
+      <script type="text/template">
+# Loading A320 FCOM Outline
+      </script>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.17.3"></script>
+    <script>
+      fetch("fcom-outline.md")
+        .then((response) => response.text())
+        .then((markdown) => {
+          document.querySelector("script[type='text/template']").textContent = markdown;
+          window.markmap.autoLoader.renderAll();
+        });
+    </script>
+  </body>
+</html>

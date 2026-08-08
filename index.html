@@ -3,32 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>two</title>
-    <meta name="description" content="A tiny page where two floats like bubbles.">
+    <title>A320 FCOM</title>
+    <meta name="description" content="A320 FCOM study launcher with Markmap, Marp, Markdown, and flashcard views.">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main class="scene" aria-label="Floating two bubbles">
-      <div class="ambient ambient-a"></div>
-      <div class="ambient ambient-b"></div>
-      <div class="ambient ambient-c"></div>
-
-      <h1 class="center-one">two</h1>
-
-      <div class="bubble-field" aria-hidden="true">
-        <span style="--x: 6vw; --size: 4.8rem; --delay: -2s; --duration: 17s;">two</span>
-        <span style="--x: 16vw; --size: 2.4rem; --delay: -8s; --duration: 20s;">two</span>
-        <span style="--x: 25vw; --size: 3.2rem; --delay: -12s; --duration: 18s;">two</span>
-        <span style="--x: 35vw; --size: 1.6rem; --delay: -5s; --duration: 14s;">two</span>
-        <span style="--x: 47vw; --size: 5.4rem; --delay: -10s; --duration: 23s;">two</span>
-        <span style="--x: 58vw; --size: 2rem; --delay: -1s; --duration: 16s;">two</span>
-        <span style="--x: 68vw; --size: 3.8rem; --delay: -15s; --duration: 19s;">two</span>
-        <span style="--x: 78vw; --size: 2.8rem; --delay: -6s; --duration: 15s;">two</span>
-        <span style="--x: 89vw; --size: 4.2rem; --delay: -13s; --duration: 21s;">two</span>
-        <span style="--x: 96vw; --size: 1.8rem; --delay: -4s; --duration: 13s;">two</span>
-        <span style="--x: 12vw; --size: 1.3rem; --delay: -18s; --duration: 24s;">two</span>
-        <span style="--x: 53vw; --size: 1.4rem; --delay: -21s; --duration: 22s;">two</span>
-      </div>
+    <main class="splash">
+      <section class="hero-panel" aria-labelledby="page-title">
+        <p class="eyebrow">Study Console</p>
+        <h1 id="page-title">A320 FCOM</h1>
+        <p class="lede">
+          A lightweight navigation layer for the local FCOM outline: systems,
+          procedures, limitations, performance, memory items, and study tools.
+        </p>
+        <div class="actions" aria-label="FCOM study views">
+          <a class="action-card primary" href="markmap.html">
+            <span>Mind Map</span>
+            <strong>Open in Markmap</strong>
+            <small>Pan and zoom through the FCOM folder tree.</small>
+          </a>
+          <a class="action-card" href="presentation.html">
+            <span>Slides</span>
+            <strong>Open in Marp</strong>
+            <small>Presentation deck source rendered from Markdown.</small>
+          </a>
+          <a class="action-card" href="reader.html">
+            <span>Reader</span>
+            <strong>Standard Markdown</strong>
+            <small>Structured outline with quick navigation.</small>
+          </a>
+          <a class="action-card" href="flashcards.html">
+            <span>Cards</span>
+            <strong>Memory Items</strong>
+            <small>Markdown-backed flashcards ready to fill in.</small>
+          </a>
+        </div>
+      </section>
     </main>
   </body>
 </html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A320 Memory Items Flashcards</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="tool-page">
+    <header class="tool-header">
+      <a href="index.html">A320 FCOM</a>
+      <nav aria-label="Views">
+        <a href="memory-items-flashcards.md">Source MD</a>
+        <a href="markmap.html">Markmap</a>
+        <a href="reader.html">Reader</a>
+        <a href="presentation.html">Marp</a>
+      </nav>
+    </header>
+    <main class="flashcard-app">
+      <section>
+        <p class="eyebrow">Markdown Flashcards</p>
+        <h1>Memory Items</h1>
+        <p class="lede dark">
+          Add cards to <code>memory-items-flashcards.md</code>. Each card can use
+          <code>### Question</code> and <code>### Answer</code>, separated by <code>---</code>.
+        </p>
+      </section>
+      <section class="cards" id="cards">Loading...</section>
+    </main>
+    <script>
+      function parseCards(markdown) {
+        return markdown
+          .split(/\n---+\n/g)
+          .map((block) => {
+            const question = block.match(/### Question\s+([\s\S]*?)(?=### Answer|$)/);
+            const answer = block.match(/### Answer\s+([\s\S]*)/);
+            return {
+              question: question?.[1]?.trim() || "New memory item",
+              answer: answer?.[1]?.trim() || "Add answer in memory-items-flashcards.md",
+            };
+          })
+          .filter((card) => card.question || card.answer);
+      }
+
+      fetch("memory-items-flashcards.md")
+        .then((response) => response.text())
+        .then((markdown) => {
+          const cards = parseCards(markdown);
+          document.getElementById("cards").innerHTML = cards
+            .map(
+              (card) => `
+                <button class="flashcard" type="button">
+                  <span>${card.question}</span>
+                  <strong>${card.answer}</strong>
+                </button>
+              `,
+            )
+            .join("");
+
+          document.querySelectorAll(".flashcard").forEach((card) => {
+            card.addEventListener("click", () => card.classList.toggle("flipped"));
+          });
+        });
+    </script>
+  </body>
+</html>

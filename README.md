@@ -1,5 +1,12 @@
-# two
+# A320 FCOM
 
-A tiny static website where the word "two" drifts like bubbles.
+A static study launcher for a local A320 FCOM outline.
 
-Open `index.html` in a browser or serve this folder with any static file server.
+Views included:
+
+- `markmap.html` renders `fcom-outline.md` as a Markmap mind map.
+- `presentation.html` renders `fcom-presentation.md` as a Marp deck.
+- `reader.html` renders `fcom-standard.md` with quick navigation.
+- `flashcards.html` renders `memory-items-flashcards.md` as editable study cards.
+
+The raw `a320fcom.md` source is ignored by git.

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A320 FCOM Marp Presentation</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="tool-page">
+    <header class="tool-header">
+      <a href="index.html">A320 FCOM</a>
+      <nav aria-label="Views">
+        <a href="fcom-presentation.md">Source MD</a>
+        <a href="markmap.html">Markmap</a>
+        <a href="reader.html">Reader</a>
+        <a href="flashcards.html">Flashcards</a>
+      </nav>
+    </header>
+    <main class="slides" id="slides">Loading...</main>
+    <script type="module">
+      import { Marp } from "https://esm.sh/@marp-team/marp-core@3.9.0?bundle";
+
+      const marp = new Marp();
+      const markdown = await fetch("fcom-presentation.md").then((response) => response.text());
+      const { html, css } = marp.render(markdown);
+      const style = document.createElement("style");
+      style.textContent = css;
+      document.head.append(style);
+      document.getElementById("slides").innerHTML = html;
+    </script>
+  </body>
+</html>
